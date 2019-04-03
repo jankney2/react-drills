@@ -1,18 +1,47 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state= {
+      list: ["bacon", "butter", "milk", "eggs",],
+      string: ''
+    }
+  }
+  //update state on change of input 
+  //check the array to see if the new string state equals any items in the array- (filter)
+  update = (val) => {
+    this.setState({
+      string: val, 
+    })
+  } 
+
   render() {
+    let list= 
+    
+      this.state.list.filter((element)=> {
+         return element.includes(this.state.string)
+     })
+      .map((element, index)=> {
+     
+     return <h2 key={index}>{element}</h2>
+    })
+    
+
     return (
+
+
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+      <input type="text" placeholder="search here" onChange={(e)=> {
+        this.update(e.target.value)
+      }}></input>
+
+      {list}
+
       </div>
     );
   }
